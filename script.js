@@ -34,17 +34,11 @@ function generatePassword(){
 
   let confirmedPassLen = passLenCheck(passLen);
 
-  // confirm lowercase?
+  function charChecker(){
+    // confirm lowercase?
   let lowerCase = confirm(
     "Quesetion 1 of 4: Do you want to use lowercase characters?"
   );
-  console.log(lowerCase);
-  // user message so they know what they selected.
-  if (lowerCase) {
-    window.alert("Ok, your password will include lowercase characters!");
-  } else {
-    window.alert("Ok, your password will not include lowercase characters.");
-  }
   console.log(lowerCase);
   // user message so they know what they selected.
   if (lowerCase) {
@@ -82,25 +76,30 @@ function generatePassword(){
     "Question 4 of4: Do you want to use special characters?"
   );
   console.log(special);
-  if (special) {
+  if (!upperCase && !lowerCase && !numeric && !special){
+    window.alert("I'm sorry, you must pick at least one type of character to include in the password. Please try again."
+    );
+charChecker();
+  }
+  else if (special) {
     window.alert("Ok, your password will include special characters!");
   } else {
     window.alert("Ok, your password will not include special characters.");
   }
+  };
+
+  charChecker();
+
+
 
 // this is the end here
 }
 
 generateBtn.addEventListener("click", writePassword);
-
+// ////////////////////////////end///////////////////////////////////
 
 // notes below::
 // function generatePassword() {
-
-  // you must choose at lest one character for each TRUE value...
-  // you must have a randomizer pick the character from a set of available characters that are approved (only from TRUE values)
-
-  // ok, time to pick the characters - at least ONE of each type of character, and up to the length of the password desired.
 
   // make a pool now based on the selection criteria
 
