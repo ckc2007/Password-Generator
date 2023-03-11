@@ -43,7 +43,7 @@ function generatePassword() {
       );
       // debug console log
       console.log(x);
-      // if the password chosen is invalid, you need to pick one that is...
+      // must have a return statement here << this was the bug
       return passLenCheck(x);
     }
   }
