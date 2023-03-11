@@ -11,6 +11,11 @@ function writePassword() {
 
 // function generatePassword() {}
 function generatePassword() {
+  let upperCase;
+  let lowerCase;
+  let numeric;
+  let special;
+
   let passLen = prompt(
     "How many characters would you like this password to be? (please enter a number between 8 and 128)"
   );
@@ -36,7 +41,7 @@ function generatePassword() {
 
   function charChecker() {
     // confirm lowercase?
-    let lowerCase = confirm(
+    lowerCase = confirm(
       "Quesetion 1 of 4: Do you want to use lowercase characters?"
     );
     console.log(lowerCase);
@@ -48,7 +53,7 @@ function generatePassword() {
     }
 
     // confirm uppercase?
-    let upperCase = confirm(
+    upperCase = confirm(
       "Question 2 of 4: Do you want to use uppercase characters?"
     );
     console.log(upperCase);
@@ -60,7 +65,7 @@ function generatePassword() {
     }
 
     // confirm numeric characters?
-    let numeric = confirm(
+    numeric = confirm(
       "Question 3 of 4: Do you want to use numeric characters?"
     );
     console.log(numeric);
@@ -72,9 +77,7 @@ function generatePassword() {
     }
 
     // confirm special characters?
-    let special = confirm(
-      "Question 4 of4: Do you want to use special characters?"
-    );
+    special = confirm("Question 4 of4: Do you want to use special characters?");
     console.log(special);
     if (!upperCase && !lowerCase && !numeric && !special) {
       window.alert(
@@ -138,16 +141,16 @@ function generatePassword() {
   let poolArr = [];
 
   if (lowerCase) {
-    poolArr.push(...lowerCaseArr);
+    poolArr = [...poolArr, ...lowerCaseArr];
   }
   if (upperCase) {
-    poolArr.push(...upperCaseArr);
+    poolArr = [...poolArr, ...upperCaseArr];
   }
   if (numeric) {
-    poolArr.push(...numericArr);
+    poolArr = [...poolArr, ...numericArr];
   }
   if (special) {
-    poolArr.push(...specialArr);
+    poolArr = [...poolArr, ...specialArr];
   }
 
   // need a random number generator that will return a random number between two numbers (range):
@@ -157,33 +160,41 @@ function generatePassword() {
 
   let solution = [];
   let randomIndex;
+  let count = confirmedPassLen;
 
   // push one random index into the solution to meet minimum character requirement for each selected character:
   if (lowerCase) {
     randomIndex = randomIndexFromRange(0, lowerCaseArr.length - 1);
     solution.push(lowerCaseArr[randomIndex]);
+    count--;
   }
   if (upperCase) {
     randomIndex = randomIndexFromRange(0, upperCaseArr.length - 1);
     solution.push(upperCaseArr[randomIndex]);
+    count--;
   }
   if (numeric) {
     randomIndex = randomIndexFromRange(0, numericArr.length - 1);
     solution.push(numericArr[randomIndex]);
+    count--;
   }
   if (special) {
     randomIndex = randomIndexFromRange(0, specialArr.length - 1);
     solution.push(specialArr[randomIndex]);
+    count--;
   }
 
-  // for each criteria, now we run a loop through to grab characters and pass them to the solution array
-  // we have: lowerCase, upperCase, numeric, special <<< booleans
+  for (let i = 0; i < count; i++) {
+    randomIndex = randomIndexFromRange(0, poolArr.length - 1);
+    solution.push(poolArr[randomIndex]);
+  }
+
+  return shuffle(solution).join("");
 
   // this is the end here
 }
 
+generatePassword();
+
 generateBtn.addEventListener("click", writePassword);
 // ////////////////////////////end///////////////////////////////////
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
