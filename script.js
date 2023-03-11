@@ -32,20 +32,19 @@ function generatePassword(){
     }
   }
 
-}
-
-generateBtn.addEventListener("click", writePassword);
-
-
-// notes below::
-// function generatePassword() {
-
   let confirmedPassLen = passLenCheck(passLen);
 
   // confirm lowercase?
   let lowerCase = confirm(
     "Quesetion 1 of 4: Do you want to use lowercase characters?"
   );
+  console.log(lowerCase);
+  // user message so they know what they selected.
+  if (lowerCase) {
+    window.alert("Ok, your password will include lowercase characters!");
+  } else {
+    window.alert("Ok, your password will not include lowercase characters.");
+  }
   console.log(lowerCase);
   // user message so they know what they selected.
   if (lowerCase) {
@@ -88,6 +87,16 @@ generateBtn.addEventListener("click", writePassword);
   } else {
     window.alert("Ok, your password will not include special characters.");
   }
+
+// this is the end here
+}
+
+generateBtn.addEventListener("click", writePassword);
+
+
+// notes below::
+// function generatePassword() {
+
   // you must choose at lest one character for each TRUE value...
   // you must have a randomizer pick the character from a set of available characters that are approved (only from TRUE values)
 
