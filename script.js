@@ -30,7 +30,7 @@ function generatePassword() {
   function passLenCheck(x) {
     if (x >= 8 && x <= 128) {
       window.alert(
-        `awesome, the password length meets the criteria! a password with ${x} characters will be generated.`
+        `Awesome, the password length meets the criteria! a password with ${x} characters will be generated.`
       );
       // debug console log
       // console.log(x);
@@ -39,7 +39,7 @@ function generatePassword() {
       // if the password is not in range do this:
     } else {
       let x = prompt(
-        "I'm sorry, that was an invalid entry. How many characters would you like this password to be? (please enter a number between 8 and 128.)"
+        "I'm sorry, that was an invalid entry. How many characters would you like this password to be? (please enter a number between 8 and 128)"
       );
       // debug console log
       // console.log(x);
@@ -47,10 +47,8 @@ function generatePassword() {
       return passLenCheck(x);
     }
   }
-  // call the password check function on the first (passLen) user input, what is returned will be stored (verified) in confirmedPassLen variable:
 
-  // BUG BUG BUG
-  // there is a bug here - when it doesn't pass something weird happens
+  // call the password check function on the first (passLen) user input, what is returned will be stored (verified) in confirmedPassLen variable:
   confirmedPassLen = passLenCheck(passLen);
 
   // we need to determine which character types the user wants to include in the password - define a function that handles the input and assignment of user choices for each type of character:
@@ -103,7 +101,7 @@ function generatePassword() {
       window.alert(
         "I'm sorry, you must pick at least one type of character to include in the password. Please try again."
       );
-      charChecker();
+      return charChecker();
     } else if (special) {
       window.alert("Ok, your password will include special characters!");
     } else {
@@ -113,10 +111,6 @@ function generatePassword() {
 
   // call the charChecker function:
   charChecker();
-  // console.log(confirmedPassLen + "alert");
-  // the bug is with this variable above
-
-  // make a pool (array) based on the selection criteria:
 
   // here are our individual character types - each is an array with all the available character options:
   // min = 0, max = lowerCaseArr.length-1
