@@ -10,7 +10,7 @@ function writePassword() {
 }
 
 // function generatePassword() {}
-function generatePassword(){
+function generatePassword() {
   let passLen = prompt(
     "How many characters would you like this password to be? (please enter a number between 8 and 128)"
   );
@@ -34,83 +34,72 @@ function generatePassword(){
 
   let confirmedPassLen = passLenCheck(passLen);
 
-  function charChecker(){
+  function charChecker() {
     // confirm lowercase?
-  let lowerCase = confirm(
-    "Quesetion 1 of 4: Do you want to use lowercase characters?"
-  );
-  console.log(lowerCase);
-  // user message so they know what they selected.
-  if (lowerCase) {
-    window.alert("Ok, your password will include lowercase characters!");
-  } else {
-    window.alert("Ok, your password will not include lowercase characters.");
-  }
-
-  // confirm uppercase?
-  let upperCase = confirm(
-    "Question 2 of 4: Do you want to use uppercase characters?"
-  );
-  console.log(upperCase);
-  // user message so they know what they selected.
-  if (upperCase) {
-    window.alert("Ok, your password will include uppercase characters!");
-  } else {
-    window.alert("Ok, your password will not include uppercase characters.");
-  }
-
-  // confirm numeric characters?
-  let numeric = confirm(
-    "Question 3 of 4: Do you want to use numeric characters?"
-  );
-  console.log(numeric);
-  // user message so they know what they selected.
-  if (numeric) {
-    window.alert("Ok, your password will include numeric characters!");
-  } else {
-    window.alert("Ok, your password will not include numeric characters.");
-  }
-
-  // confirm special characters?
-  let special = confirm(
-    "Question 4 of4: Do you want to use special characters?"
-  );
-  console.log(special);
-  if (!upperCase && !lowerCase && !numeric && !special){
-    window.alert("I'm sorry, you must pick at least one type of character to include in the password. Please try again."
+    let lowerCase = confirm(
+      "Quesetion 1 of 4: Do you want to use lowercase characters?"
     );
-charChecker();
+    console.log(lowerCase);
+    // user message so they know what they selected.
+    if (lowerCase) {
+      window.alert("Ok, your password will include lowercase characters!");
+    } else {
+      window.alert("Ok, your password will not include lowercase characters.");
+    }
+
+    // confirm uppercase?
+    let upperCase = confirm(
+      "Question 2 of 4: Do you want to use uppercase characters?"
+    );
+    console.log(upperCase);
+    // user message so they know what they selected.
+    if (upperCase) {
+      window.alert("Ok, your password will include uppercase characters!");
+    } else {
+      window.alert("Ok, your password will not include uppercase characters.");
+    }
+
+    // confirm numeric characters?
+    let numeric = confirm(
+      "Question 3 of 4: Do you want to use numeric characters?"
+    );
+    console.log(numeric);
+    // user message so they know what they selected.
+    if (numeric) {
+      window.alert("Ok, your password will include numeric characters!");
+    } else {
+      window.alert("Ok, your password will not include numeric characters.");
+    }
+
+    // confirm special characters?
+    let special = confirm(
+      "Question 4 of4: Do you want to use special characters?"
+    );
+    console.log(special);
+    if (!upperCase && !lowerCase && !numeric && !special) {
+      window.alert(
+        "I'm sorry, you must pick at least one type of character to include in the password. Please try again."
+      );
+      charChecker();
+    } else if (special) {
+      window.alert("Ok, your password will include special characters!");
+    } else {
+      window.alert("Ok, your password will not include special characters.");
+    }
   }
-  else if (special) {
-    window.alert("Ok, your password will include special characters!");
-  } else {
-    window.alert("Ok, your password will not include special characters.");
-  }
-  };
 
   charChecker();
-
-
-
-// this is the end here
-}
-
-generateBtn.addEventListener("click", writePassword);
-// ////////////////////////////end///////////////////////////////////
-
-// notes below::
-// function generatePassword() {
 
   // make a pool now based on the selection criteria
 
   // min = 0, max = lowerCasePoolArr.length-1
-  let lowerCasePoolArr = "abcdefghijklmnopqrstuvwxyz".split("");
+  let lowerCaseArr = "abcdefghijklmnopqrstuvwxyz".split("");
   // min = 0, max = upperCasePoolArr.length-1
-  let upperCasePoolArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  let upperCaseArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   // min = 0, max = numericPoolArr.length-1
-  let numericPoolArr = "1234567890".split("");
+  let numericArr = "1234567890".split("");
   // min = 0, max = specialPoolArr.length-1
-  let specialPoolArr = [
+  let specialArr = [
     "\u0020",
     "\u0021",
     "\u0022",
@@ -146,61 +135,55 @@ generateBtn.addEventListener("click", writePassword);
     "\u007e",
   ];
 
+  let poolArr = [];
+
+  if (lowerCase) {
+    poolArr.push(...lowerCaseArr);
+  }
+  if (upperCase) {
+    poolArr.push(...upperCaseArr);
+  }
+  if (numeric) {
+    poolArr.push(...numericArr);
+  }
+  if (special) {
+    poolArr.push(...specialArr);
+  }
+
   // need a random number generator that will return a random number between two numbers (range):
   function randomIndexFromRange(a, b) {
     return Math.floor(Math.random() * (b - a + 1) + a);
   }
 
+  let solution = [];
   let randomIndex;
-  let preSolution = [];
-  let solution;
-  // for each criteria, now we run a loop through to grab characters and pass them to the solution array
-  // we have: lowerCase, upperCase, numeric, special <<< booleans
+
+  // push one random index into the solution to meet minimum character requirement for each selected character:
   if (lowerCase) {
-    randomIndex = randomIndexFromRange(0, lowerCasePoolArr.length - 1);
-    preSolution.push(lowerCasePoolArr[randomIndex]);
+    randomIndex = randomIndexFromRange(0, lowerCaseArr.length - 1);
+    solution.push(lowerCaseArr[randomIndex]);
   }
   if (upperCase) {
-    randomIndex = randomIndexFromRange(0, upperCasePoolArr.length - 1);
-    preSolution.push(upperCasePoolArr[randomIndex]);
+    randomIndex = randomIndexFromRange(0, upperCaseArr.length - 1);
+    solution.push(upperCaseArr[randomIndex]);
   }
   if (numeric) {
-    randomIndex = randomIndexFromRange(0, numericPoolArr.length - 1);
-    preSolution.push(numericPoolArr[randomIndex]);
+    randomIndex = randomIndexFromRange(0, numericArr.length - 1);
+    solution.push(numericArr[randomIndex]);
   }
   if (special) {
-    randomIndex = randomIndexFromRange(0, specialPoolArr.length - 1);
-    preSolution.push(specialPoolArr[randomIndex]);
+    randomIndex = randomIndexFromRange(0, specialArr.length - 1);
+    solution.push(specialArr[randomIndex]);
   }
-  // double check
-  console.log(preSolution);
 
-  // function generatePass() {
-  //   while (preSolution.length <= confirmedPassLen) {
-  //     if (lowerCase && preSolution.length < confirmedPassLen) {
-  //       randomIndex = randomIndexFromRange(0, lowerCasePoolArr.length - 1);
-  //       preSolution.push(lowerCasePoolArr[randomIndex]);
-  //     }
-  //     if (upperCase && preSolution.length < confirmedPassLen) {
-  //       randomIndex = randomIndexFromRange(0, upperCasePoolArr.length - 1);
-  //       preSolution.push(upperCasePoolArr[randomIndex]);
-  //     }
-  //     if (numeric && preSolution.length < confirmedPassLen) {
-  //       randomIndex = randomIndexFromRange(0, numericPoolArr.length - 1);
-  //       preSolution.push(numericPoolArr[randomIndex]);
-  //     }
-  //     if (special && preSolution.length < confirmedPassLen) {
-  //       randomIndex = randomIndexFromRange(0, specialPoolArr.length - 1);
-  //       preSolution.push(specialPoolArr[randomIndex]);
-  //     }
-  //   }
-  //   console.log(preSolution);
-  //   return preSolution.join("");
-  // }
+  // for each criteria, now we run a loop through to grab characters and pass them to the solution array
+  // we have: lowerCase, upperCase, numeric, special <<< booleans
 
-  // generatePass();
+  // this is the end here
 }
+
+generateBtn.addEventListener("click", writePassword);
+// ////////////////////////////end///////////////////////////////////
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
