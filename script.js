@@ -248,7 +248,7 @@ function generatePassword() {
 }
 
 // call the generate function to run it
-generatePassword();
+// generatePassword();
 
 generateBtn.addEventListener("click", writePassword);
 // ////////////////////////////end///////////////////////////////////
