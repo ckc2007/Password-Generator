@@ -48,6 +48,7 @@ function generatePassword() {
     }
   }
   // call the password check function on the first (passLen) user input, what is returned will be stored (verified) in confirmedPassLen variable:
+  // there is a bug here - when it doesn't pass something weird happens
   confirmedPassLen = passLenCheck(passLen);
 
   // we need to determine which character types the user wants to include in the password - define a function that handles the input and assignment of user choices for each type of character:
@@ -110,6 +111,7 @@ function generatePassword() {
 
   // call the charChecker function:
   charChecker();
+  console.log(confirmedPassLen + "alert");
 
   // make a pool (array) based on the selection criteria:
 
@@ -190,6 +192,7 @@ function generatePassword() {
   let randomIndex;
   // make a count variable to keep track of the length of our created password
   let count = confirmedPassLen;
+  // here is the bug - if the number isn't right, its undefined...
 
   // push one random index into the solution to meet minimum character requirement (per the coding challenge requirements) for each selected character:
   if (lowerCase) {
@@ -246,3 +249,5 @@ generatePassword();
 
 generateBtn.addEventListener("click", writePassword);
 // ////////////////////////////end///////////////////////////////////
+
+// the problem happens, when the numeric criteria is invalid, then you try again and it only gives one of each chosen character
