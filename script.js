@@ -9,42 +9,54 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// function generatePassword() {}
+// function generatePassword() here:
 function generatePassword() {
+  // define variable to hold our booleans for character choices
   let upperCase;
   let lowerCase;
   let numeric;
   let special;
+  // define variable to hold our confirmed password length numeric value
   let confirmedPassLen;
 
+  // gather user input for password length
   let passLen = prompt(
     "How many characters would you like this password to be? (please enter a number between 8 and 128)"
   );
+  // debug console log
   console.log(passLen);
 
+  // determine if user input is valid for password length
   function passLenCheck(x) {
     if (x >= 8 && x <= 128) {
       window.alert(
         `awesome, the password length meets the criteria! a password with ${x} characters will be generated.`
       );
+      // debug console log
       console.log(x);
+      // return the confirmned password length value
       return x;
+      // if the password is not in range do this:
     } else {
       let x = prompt(
         "I'm sorry, that was an invalid entry. How many characters would you like this password to be? (please enter a number between 8 and 128.)"
       );
+      // debug console log
       console.log(x);
+      // if the password chosen is invalid, you need to pick one that is...
       passLenCheck(x);
     }
   }
-
+  // call the password check function on the first (passLen) user input, what is returned will be stored (verified) in confirmedPassLen variable:
   confirmedPassLen = passLenCheck(passLen);
 
+  // we need to determine which character types the user wants to include in the password - define a function that handles the input and assignment of user choices for each type of character:
   function charChecker() {
     // confirm lowercase?
     lowerCase = confirm(
       "Quesetion 1 of 4: Do you want to use lowercase characters?"
     );
+    // debug console log
     console.log(lowerCase);
     // user message so they know what they selected.
     if (lowerCase) {
@@ -57,6 +69,7 @@ function generatePassword() {
     upperCase = confirm(
       "Question 2 of 4: Do you want to use uppercase characters?"
     );
+    // debug console log
     console.log(upperCase);
     // user message so they know what they selected.
     if (upperCase) {
@@ -69,6 +82,7 @@ function generatePassword() {
     numeric = confirm(
       "Question 3 of 4: Do you want to use numeric characters?"
     );
+    // debug console log
     console.log(numeric);
     // user message so they know what they selected.
     if (numeric) {
@@ -79,7 +93,9 @@ function generatePassword() {
 
     // confirm special characters?
     special = confirm("Question 4 of4: Do you want to use special characters?");
+    // debug console log
     console.log(special);
+    // if the user has not chosen at least one option:
     if (!upperCase && !lowerCase && !numeric && !special) {
       window.alert(
         "I'm sorry, you must pick at least one type of character to include in the password. Please try again."
@@ -92,17 +108,19 @@ function generatePassword() {
     }
   }
 
+  // call the charChecker function:
   charChecker();
 
-  // make a pool now based on the selection criteria
+  // make a pool (array) based on the selection criteria:
 
-  // min = 0, max = lowerCasePoolArr.length-1
+  // here are our individual character types - each is an array with all the available character options:
+  // min = 0, max = lowerCaseArr.length-1
   let lowerCaseArr = "abcdefghijklmnopqrstuvwxyz".split("");
-  // min = 0, max = upperCasePoolArr.length-1
+  // min = 0, max = upperCaseArr.length-1
   let upperCaseArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  // min = 0, max = numericPoolArr.length-1
+  // min = 0, max = numericlArr.length-1
   let numericArr = "1234567890".split("");
-  // min = 0, max = specialPoolArr.length-1
+  // min = 0, max = specialArr.length-1
   let specialArr = [
     "\u0020",
     "\u0021",
