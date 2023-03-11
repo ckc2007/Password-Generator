@@ -153,6 +153,8 @@ function generatePassword() {
     poolArr = [...poolArr, ...specialArr];
   }
 
+  console.log(poolArr);
+
   // need a random number generator that will return a random number between two numbers (range):
   function randomIndexFromRange(a, b) {
     return Math.floor(Math.random() * (b - a + 1) + a);
@@ -165,31 +167,38 @@ function generatePassword() {
   // push one random index into the solution to meet minimum character requirement for each selected character:
   if (lowerCase) {
     randomIndex = randomIndexFromRange(0, lowerCaseArr.length - 1);
+    console.log(randomIndex);
     solution.push(lowerCaseArr[randomIndex]);
     count--;
   }
   if (upperCase) {
     randomIndex = randomIndexFromRange(0, upperCaseArr.length - 1);
+    console.log(randomIndex);
     solution.push(upperCaseArr[randomIndex]);
     count--;
   }
   if (numeric) {
     randomIndex = randomIndexFromRange(0, numericArr.length - 1);
+    console.log(randomIndex);
     solution.push(numericArr[randomIndex]);
     count--;
   }
   if (special) {
     randomIndex = randomIndexFromRange(0, specialArr.length - 1);
+    console.log(randomIndex);
     solution.push(specialArr[randomIndex]);
     count--;
   }
+
+  console.log(solution);
 
   for (let i = 0; i < count; i++) {
     randomIndex = randomIndexFromRange(0, poolArr.length - 1);
     solution.push(poolArr[randomIndex]);
   }
 
-  return shuffle(solution).join("");
+  console.log(solution);
+  return solution.join("").toString();
 
   // this is the end here
 }
