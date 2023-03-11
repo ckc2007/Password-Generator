@@ -44,10 +44,12 @@ function generatePassword() {
       // debug console log
       console.log(x);
       // if the password chosen is invalid, you need to pick one that is...
-      passLenCheck(x);
+      return passLenCheck(x);
     }
   }
   // call the password check function on the first (passLen) user input, what is returned will be stored (verified) in confirmedPassLen variable:
+
+  // BUG BUG BUG
   // there is a bug here - when it doesn't pass something weird happens
   confirmedPassLen = passLenCheck(passLen);
 
@@ -112,6 +114,7 @@ function generatePassword() {
   // call the charChecker function:
   charChecker();
   console.log(confirmedPassLen + "alert");
+  // the bug is with this variable above
 
   // make a pool (array) based on the selection criteria:
 
