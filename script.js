@@ -157,8 +157,12 @@ function generatePassword() {
     "\u007e",
   ];
 
+  // create an empty array called poolArr that will hold the chosen character types:
   let poolArr = [];
 
+  // concatenate the arrays from the chosen character types into pool array:
+  // could use push and spread operator, but lets do this instead...
+  // remember - the spread operator makes the array iterable and does not modify the originals.
   if (lowerCase) {
     poolArr = [...poolArr, ...lowerCaseArr];
   }
@@ -172,22 +176,29 @@ function generatePassword() {
     poolArr = [...poolArr, ...specialArr];
   }
 
+  // debug console log
   console.log(poolArr);
 
-  // need a random number generator that will return a random number between two numbers (range):
+  // need a random number generator function that will return a random number between two numbers (range [a,b]):
   function randomIndexFromRange(a, b) {
     return Math.floor(Math.random() * (b - a + 1) + a);
   }
 
+  // define an empty array to hold our solution
   let solution = [];
+  // define variable that will hold our random index
   let randomIndex;
+  // make a count variable to keep track of the length of our created password
   let count = confirmedPassLen;
 
-  // push one random index into the solution to meet minimum character requirement for each selected character:
+  // push one random index into the solution to meet minimum character requirement (per the coding challenge requirements) for each selected character:
   if (lowerCase) {
     randomIndex = randomIndexFromRange(0, lowerCaseArr.length - 1);
+    // debug console log
     console.log(randomIndex);
+    // add it to our solution array
     solution.push(lowerCaseArr[randomIndex]);
+    // take one away from our count
     count--;
   }
   if (upperCase) {
@@ -209,21 +220,28 @@ function generatePassword() {
     count--;
   }
 
+  // debug console log - making sure we have one of each...
   console.log(solution);
 
+  // for all the remaining characters, create a new random index and fill up the solution array:
   for (let i = 0; i < count; i++) {
     randomIndex = randomIndexFromRange(0, poolArr.length - 1);
     solution.push(poolArr[randomIndex]);
   }
 
+  // debug console log to make sure our solution holds the required number of characters:
   console.log(solution);
+  // we need to return a string, so join the array and .toString() to make sure all characters are a single string:
   let solutionString = solution.join("").toString();
+  // debug console log to make sure we have a string
   console.log(solutionString);
+  // the final output is the string of random characters of the desired length
   return solutionString;
 
-  // this is the end here
+  // this is the end of the generate function here
 }
 
+// call the generate function to run it
 generatePassword();
 
 generateBtn.addEventListener("click", writePassword);
