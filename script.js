@@ -199,7 +199,9 @@ function generatePassword() {
   }
 
   console.log(solution);
-  return solution.join("").toString();
+  let solutionString = solution.join("").toString();
+  console.log(solutionString);
+  return solutionString;
 
   // this is the end here
 }
