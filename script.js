@@ -15,6 +15,7 @@ function generatePassword() {
   let lowerCase;
   let numeric;
   let special;
+  let confirmedPassLen;
 
   let passLen = prompt(
     "How many characters would you like this password to be? (please enter a number between 8 and 128)"
@@ -37,7 +38,7 @@ function generatePassword() {
     }
   }
 
-  let confirmedPassLen = passLenCheck(passLen);
+  confirmedPassLen = passLenCheck(passLen);
 
   function charChecker() {
     // confirm lowercase?
