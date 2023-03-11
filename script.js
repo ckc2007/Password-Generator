@@ -189,7 +189,6 @@ function generatePassword() {
   let randomIndex;
   // make a count variable to keep track of the length of our created password
   let count = confirmedPassLen;
-  // here is the bug - if the number isn't right, its undefined...
 
   // push one random index into the solution to meet minimum character requirement (per the coding challenge requirements) for each selected character:
   if (lowerCase) {
@@ -238,7 +237,7 @@ function generatePassword() {
   // the final output is the string of random characters of the desired length
   return solutionString;
 
-  // this is the end of the generate function here
+  // this is the end of the generate password function
 }
 
 generateBtn.addEventListener("click", writePassword);
