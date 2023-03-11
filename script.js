@@ -247,10 +247,4 @@ function generatePassword() {
   // this is the end of the generate function here
 }
 
-// call the generate function to run it
-// generatePassword();
-
 generateBtn.addEventListener("click", writePassword);
-// ////////////////////////////end///////////////////////////////////
-
-// the problem happens, when the numeric criteria is invalid, then you try again and it only gives one of each chosen character
